@@ -76,7 +76,7 @@ if (jQuery) (function ($) {
         var targetGroup = event ? $(event.target).parents().addBack() : null;
 
         // Are we clicking anywhere in a dropdown?
-        if (targetGroup && targetGroup.is('.dropdown')) {
+        if (targetGroup && targetGroup.is('.jquery-dropdown')) {
             // Is it a dropdown menu?
             if (targetGroup.is('.dropdown-menu')) {
                 // Did we click on an option? If so close it.
@@ -88,7 +88,7 @@ if (jQuery) (function ($) {
         }
 
         // Hide any dropdown that may be showing
-        $(document).find('.dropdown:visible').each(function () {
+        $(document).find('.jquery-dropdown:visible').each(function () {
             var dropdown = $(this);
             dropdown
 				.hide()
@@ -97,13 +97,13 @@ if (jQuery) (function ($) {
         });
 
         // Remove all dropdown-open classes
-        $(document).find('.dropdown-open').removeClass('dropdown-open');
+        $(document).find('.jquery-dropdown .dropdown-open').removeClass('dropdown-open');
 
     }
 
     function position() {
 
-        var dropdown = $('.dropdown:visible').eq(0),
+        var dropdown = $('.jquery-dropdown:visible').eq(0),
 			trigger = dropdown.data('dropdown-trigger'),
 			hOffset = trigger ? parseInt(trigger.attr('data-horizontal-offset') || 0, 10) : null,
 			vOffset = trigger ? parseInt(trigger.attr('data-vertical-offset') || 0, 10) : null;
@@ -128,8 +128,8 @@ if (jQuery) (function ($) {
         }
     }
 
-    $(document).on('click.dropdown', '[data-dropdown]', show);
-    $(document).on('click.dropdown', hide);
+    $(document).on('click.jquery-dropdown', '[data-dropdown]', show);
+    $(document).on('click.jquery-dropdown', hide);
     $(window).on('resize', position);
 
 })(jQuery);
